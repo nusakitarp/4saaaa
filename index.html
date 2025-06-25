@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>buat kamu</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #fff8fa, #fceef2);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      color: #444;
+      min-height: 100vh;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-top: 20vh;
+      font-size: 2em;
+      font-weight: 500;
+      color: #b3445c;
+      text-transform: lowercase;
+      transition: all 0.4s ease-in;
+    }
+
+    p.note {
+      max-width: 600px;
+      margin: 20px auto;
+      font-size: 1.1em;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .love {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall 4s linear forwards;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .love-letter {
+      display: none;
+      width: 80%;
+      max-width: 600px;
+      margin: 10vh auto;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      font-family: 'Georgia', serif;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+
+    .love-letter h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      letter-spacing: 1px;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .heart img {
+      width: 50px;
+      height: auto;
+      animation: beat 2s ease-in-out infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .foto-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .foto-row img {
+      width: 130px;
+      height: 130px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: scale(0.7);
+      transition: all 0.6s ease;
+    }
+
+    #info {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      color: #aaa;
+      font-size: 0.9em;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body onclick="handleClick()">
+
+  <h1>HAIIIIIII SAYANGGG</h1>
+  <p class="note">klik layarnya ya, aku mau kasih kamu sesuatu</p>
+
+  <div class="love-letter" id="suratBox">
+    <h2>Dear ICELL,</h2>
+    <p>
+      goodnight my sweet girl, my pretty girl and good girl, akuuuu mintaa maafff yaaa sayangg  udah bikin kamu bt dan inget yaa hari ini get enough rest so that ur body is stronger okeii? kalo hari inii masii kurang baik gapapa yaa sayangg masii ada esok harii dan sekarang udah ada akuu dikehidupann kamuu yang selalu adaa untuk kamu kapanpunn kamu butuh, jadii kalau adaa apaa apaaa jangann lupaa ceritaa ke akuu yyyaaa! akuu gamauu kamu ngerasa sendiriii🤍🤍🤍  
+    </p>
+    <p>
+      last, naaf ya kalau aku bikin kamu kesel. aku lagi belajar supaya bisa lebih peka,
+      lebih ngerti kamu
+    </p>
+    <p>
+      Kalau kamu izinin, aku pengen terus di samping kamu —  
+      bukan cuma waktu kamu bahagia, tapi juga waktu kamu lagi lelah.
+    </p>
+    <p style="margin-top: 30px; font-weight: bold;">with love,<br />A</p>
+    <div class="foto-row" id="fotoRow">
+      <img src="ICELL.jpg" alt="1" />
+      <img src="icell2.jpg" alt="2" />
+      <img src="icell3.jpg" alt="3" />
+    </div>
+  </div>
+
+  <p id="info">klik disinii</p>
+
+  <audio id="backsound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8f7216a5bb.mp3?filename=soft-piano-ambient-110660.mp3"></audio>
+
+  <script>
+    let udahKlik = false;
+
+    function handleClick() {
+      if (udahKlik) return;
+      udahKlik = true;
+
+      document.getElementById('backsound').play();
+      document.querySelector('h1').style.display = "none";
+      document.querySelector('.note').style.display = "none";
+      document.getElementById("info").style.display = "none";
+
+      const suratBox = document.getElementById("suratBox");
+      suratBox.style.display = "block";
+
+      for (let i = 0; i < 25; i++) {
+        const love = document.createElement('div');
+        love.className = 'love';
+        love.style.left = Math.random() * 100 + 'vw';
+        love.style.animationDelay = `${Math.random() * 2}s`;
+        document.body.appendChild(love);
+      }
+
+      setTimeout(() => {
+        document.querySelectorAll('#fotoRow img').forEach((img, i) => {
+          setTimeout(() => {
+            img.style.opacity = '1';
+            img.style.transform = 'scale(1)';
+          }, 300 + i * 300);
+        });
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>
